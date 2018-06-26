@@ -1,0 +1,79 @@
+﻿Ubuntu 16.04.4 LTS
+
+
+iptables -L -n
+ufw status
+ufw enable
+y
+ufw allow in ssh
+ufw allow in 80/tcp
+ufw allow in 443/tcp
+ufw allow in 10000:20000/udp
+
+ufw status
+iptables -L -n
+
+cd /usr/local
+mkdir jisti
+cd /usr/local/jisti
+wget https://download.jitsi.org/jitsi-key.gpg.key
+
+gpg jitsi-key.gpg.key
+再输入1
+{pub后面id}
+
+dev@jitsi.org
+
+
+gpg --search-keys dev@jitsi.org
+
+{
+匹配pub后面id 2DC1389C
+pub  4096R/2DC1389C 2016-06-23 Jitsi <dev@jitsi.org>
+(1)	Jitsi <dev@jitsi.org>
+	  4096 bit RSA key 2DC1389C, created: 2016-06-23
+}
+
+
+gpg --list-sigs dev@jitsi.org
+加上keysnotfound的两个id
+gpg --recv-keys 8030357F
+gpg --recv-keys C2EFE8AA
+
+
+gpg --list-sigs dev@jitsi.org
+
+apt-key add jitsi-key.gpg.key
+
+echo 'deb https://download.jitsi.org stable/' > /etc/apt/sources.list.d/jitsi-stable.list
+
+apt update
+
+apt -y install jitsi-meet
+
+输入ip
+enter
+ 1. Generate a new self-signed certificate (You will later get a chance to obtain a Let's encrypt certificate)
+
+1
+enter
+
+/usr/share/jitsi-meet/scripts/install-letsencrypt-cert.sh
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
